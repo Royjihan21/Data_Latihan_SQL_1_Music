@@ -171,27 +171,122 @@ Selamat datang di Proyek SQL Menarik! Proyek ini dirancang untuk memberikan peng
     
 ## Pertanyaan Bagian 2
 
-### 1. Tulis kueri untuk mengembalikan email, nama depan, nama belakang, & Genre semua pendengar Musik    Rock. Kembalikan daftar Anda yang diurutkan menurut abjad melalui email yang dimulai dengan A.
+### 1. Tulis kueri untuk mengembalikan email, nama depan, nama belakang, & Genre semua pendengar Musik Rock. Kembalikan daftar Anda yang diurutkan menurut abjad melalui email yang dimulai dengan A.
   - **Query**
     ***
+    SELECT DISTINCT c.email, c.first_name, c.last_name, g.name AS genre
+    FROM sql_port_1_music.customer AS c
+    JOIN sql_port_1_music.invoice AS i ON c.customer_id = i.customer_id
+    JOIN sql_port_1_music.invoice_line AS il ON i.invoice_id = il.invoice_id
+    JOIN sql_port_1_music.track AS t ON il.track_id = t.track_id
+    JOIN sql_port_1_music.genre AS g ON t.genre_id = g.genre_id
+    WHERE g.name LIKE 'Rock'
+    AND c.email LIKE 'A%'
+    ORDER BY c.email;
+
   - **Penjelasan Query**
     ***
-  - **Hasil**
+    Query di atas adalah perintah SQL yang digunakan untuk mengambil data dari tabel-tabel berbeda dalam database **sql_port_1_music**. Query ini mengambil data pelanggan      (**customer**) yang memiliki alamat email (**email**) yang dimulai dengan huruf 'A' dan juga telah melakukan pembelian lagu dengan genre 'Rock'. Selain itu, data yang      diambil juga mencakup kolom-kolom **first_name**, **last_name**, dan **name** (diubah menjadi alias 'genre').
 
-### 2. Mari undang artis yang paling banyak menulis musik rock di dataset kita. Tulis kueri yang          mengembalikan nama Artis dan jumlah lagu total dari 10 band rock teratas.
+    Mari kita bahas masing-masing bagian dari query tersebut:
+
+    1. **SELECT DISTINCT c.email, c.first_name, c.last_name, g.name AS genre**: Bagian ini dari query mengambil beberapa kolom dari tabel-tabel yang berbeda. **DISTINCT**         digunakan untuk memastikan bahwa hasil query hanya akan berisi baris unik. Alias 'genre' digunakan untuk memberi nama baru untuk kolom **name** pada tabel                  **genre**, sehingga nantinya dapat diakses dengan nama 'genre' dalam hasil query.
+
+    2. **FROM sql_port_1_music.customer AS c**: Bagian ini menentukan tabel sumber data utama, yaitu tabel **customer**, dan menambahkan alias 'c' untuk tabel **customer**.
+
+    3. **JOIN sql_port_1_music.invoice AS i ON c.customer_id = i.customer_id**: Bagian ini melakukan JOIN antara tabel **customer** (alias 'c') dengan tabel **invoice**           (alias 'i') berdasarkan kolom **customer_id**. Ini menggabungkan data pelanggan dengan data pembelian faktur.
+
+    4. **JOIN sql_port_1_music.invoice_line AS il ON i.invoice_id = il.invoice_id**: Bagian ini melakukan JOIN antara tabel **invoice** (alias 'i') dengan tabel                   **invoice_line** (alias 'il') berdasarkan kolom **invoice_id**. Ini menggabungkan data pembelian faktur dengan detail item pembelian.
+
+    5. **JOIN sql_port_1_music.track AS t ON il.track_id = t.track_id**: Bagian ini melakukan JOIN antara tabel **invoice_line** (alias 'il') dengan tabel **track** (alias        't') berdasarkan kolom **track_id**. Ini menggabungkan data item pembelian dengan informasi lagu.
+
+    6. **JOIN sql_port_1_music.genre AS g ON t.genre_id = g.genre_id**: Bagian ini melakukan JOIN antara tabel **track** (alias 't') dengan tabel **genre** (alias 'g')            berdasarkan kolom **genre_id**. Ini menggabungkan data lagu dengan informasi genre lagu.
+
+    7. **WHERE g.name LIKE 'Rock' AND c.email LIKE 'A%'**: Bagian ini adalah klausa WHERE yang mengatur kondisi filter. Kondisi ini memastikan bahwa hanya data dengan             genre 'Rock' dan email pelanggan yang dimulai dengan huruf 'A' yang akan dipertimbangkan dalam hasil query.
+
+    8. **ORDER BY c.email**: Bagian ini mengurutkan hasil berdasarkan alamat email (**email**) pelanggan dalam urutan ascending (default). Jadi, hasil query akan disusun          berdasarkan alamat email pelanggan secara alfabetis.
+
+    Jadi, keseluruhan query ini akan mengambil data pelanggan dengan email yang dimulai dengan huruf 'A' dan juga telah membeli lagu dengan genre 'Rock'. Data yang             diambil mencakup email, nama depan, nama belakang, dan nama genre lagu. Hasilnya akan berisi baris-baris unik dan diurutkan berdasarkan email pelanggan dalam urutan        ascending.
+
+  - **Hasil**
+    <div align="center">
+    <img src="https://github.com/Royjihan21/Data_Gambar_SQL/blob/main/Picture_Porto_1_SQL_Music/Bagian_2_Q1.png">
+    </div
+
+### 2. Mari undang artis yang paling banyak menulis musik rock di dataset kita. Tulis kueri yang mengembalikan nama Artis dan jumlah lagu total dari 10 band rock teratas.
   - **Query**
     ***
+    SELECT artist.artist_id, artist.name,COUNT(artist.artist_id) AS number_of_songs
+    FROM sql_port_1_music.track
+    JOIN sql_port_1_music.album ON album.album_id = track.album_id
+    JOIN sql_port_1_music.artist ON artist.artist_id = album.artist_id
+    JOIN sql_port_1_music.genre ON genre.genre_id = track.genre_id
+    WHERE genre.name LIKE 'Rock'
+    GROUP BY artist.artist_id,artist.name
+    ORDER BY number_of_songs DESC
+    LIMIT 10;
+
   - **Penjelasan Query**
     ***
-  - **Hasil**
+    Query SQL di atas ditujukan untuk menemukan 10 artis dengan jumlah lagu genre 'Rock' terbanyak dari database **sql_port_1_music**. Query ini menggunakan JOIN untuk         menggabungkan data dari tabel **track**, **album**, **artist**, dan **genre**.
 
-### 3. Kembalikan semua nama trek yang memiliki panjang lagu lebih panjang dari rata-rata panjang         lagu. Kembalikan Nama dan Milidetik untuk setiap trek. Diurutkan berdasarkan panjang lagu          dengan lagu terpanjang terdaftar terlebih dahulu..
+    Berikut adalah penjelasan lebih detail untuk setiap bagian dari query:
+
+    1. **SELECT artist.artist_id, artist.name, COUNT(artist.artist_id) AS number_of_songs**: Bagian ini dari query memilih tiga kolom, yaitu **artist_id**, **name** dari       tabel **artist**, dan menghitung jumlah lagu (**track**) yang diasosiasikan dengan setiap **artist_id** (diubah menjadi alias **number_of_songs**).
+
+    2. **FROM sql_port_1_music.track**: Bagian ini menentukan tabel sumber data utama, yaitu tabel **track** dalam database **sql_port_1_music**.
+
+    3. **JOIN sql_port_1_music.album ON album.album_id = track.album_id**: Bagian ini menggabungkan data dari tabel **album** dengan tabel **track** berdasarkan kolom             **album_id**. 
+
+    4. **JOIN sql_port_1_music.artist ON artist.artist_id = album.artist_id**: Bagian ini menggabungkan data dari tabel **artist** dengan tabel **album** berdasarkan kolom        **artist_id**.
+
+    5. **JOIN sql_port_1_music.genre ON genre.genre_id = track.genre_id**: Bagian ini menggabungkan data dari tabel **genre** dengan tabel **track** berdasarkan kolom             **genre_id**.
+
+    6. **WHERE genre.name LIKE 'Rock'**: Bagian ini adalah klausa WHERE yang menentukan bahwa hanya lagu dengan genre 'Rock' yang akan dipertimbangkan dalam hasil query.
+
+    7. **GROUP BY artist.artist_id, artist.name**: Bagian ini mengelompokkan hasil berdasarkan **artist_id** dan **name** dari tabel **artist**. Ini berarti fungsi                **COUNT(artist.artist_id)** akan dijalankan untuk setiap artis yang unik dan menghasilkan satu baris dalam hasil akhir untuk setiap artis.
+
+    8. **ORDER BY number_of_songs DESC**: Bagian ini mengurutkan hasil berdasarkan jumlah lagu (**number_of_songs**) dari yang tertinggi ke terendah (descending). 
+
+    9. **LIMIT 10**: Bagian ini membatasi hasil hanya untuk sepuluh baris teratas (artis dengan jumlah lagu 'Rock' terbanyak).
+
+    Jadi, secara keseluruhan, query ini mengambil data artis dengan jumlah lagu genre 'Rock' terbanyak, dengan data yang diambil mencakup **artist_id**, nama artis, dan        jumlah lagu. Hasilnya akan berisi sepuluh baris data dengan jumlah lagu terbanyak.
+
+  - **Hasil**
+    <div align="center">
+    <img src="https://github.com/Royjihan21/Data_Gambar_SQL/blob/main/Picture_Porto_1_SQL_Music/Bagian_2_Q2.png">
+    </div
+    
+### 3. Kembalikan semua nama trek yang memiliki panjang lagu lebih panjang dari rata-rata panjang lagu. Kembalikan Nama dan Milidetik untuk setiap trek. Diurutkan berdasarkan panjang lagu dengan lagu terpanjang terdaftar terlebih dahulu..
   - **Query**
     ***
+    SELECT name,milliseconds
+    FROM sql_port_1_music.track
+    WHERE milliseconds > (
+	  SELECT AVG(milliseconds) AS avg_track_length
+	  FROM sql_port_1_music.track )
+    ORDER BY milliseconds DESC;
+
   - **Penjelasan Query**
     ***
-  - **Hasil**
+    Query di atas adalah perintah SQL yang digunakan untuk mengambil nama (**name**) dan durasi dalam milidetik (**milliseconds**) dari lagu-lagu dalam tabel **track**         dari database **sql_port_1_music**. Lagu-lagu yang akan dipilih adalah lagu-lagu yang memiliki durasi lebih lama dari rata-rata durasi lagu di tabel tersebut.
 
+    Mari kita bahas masing-masing bagian dari query tersebut:
+
+    1. **SELECT name, milliseconds**: Bagian ini dari query memilih dua kolom, yaitu **name** dan **milliseconds** dari tabel **track**. Query ini akan mengambil data nama        dan durasi lagu untuk setiap baris yang memenuhi kondisi dari bagian berikutnya.
+
+    2. **FROM sql_port_1_music.track**: Bagian ini menentukan tabel sumber data utama, yaitu tabel **track** dalam database **sql_port_1_music**.
+
+    3. **WHERE milliseconds > (SELECT AVG(milliseconds) AS avg_track_length FROM sql_port_1_music.track)**: Bagian ini adalah klausa WHERE. Di dalamnya, terdapat subquery         yang menghitung rata-rata durasi lagu (**milliseconds**) dari seluruh lagu dalam tabel **track**. Subquery ini menggunakan **SELECT AVG(milliseconds) AS                    avg_track_length FROM sql_port_1_music.track** untuk mengambil rata-rata durasi lagu dengan nama alias **avg_track_length**. Kemudian, bagian utama dari query              menggunakan kondisi **WHERE** untuk memilih lagu-lagu yang memiliki durasi (**milliseconds**) lebih besar dari nilai rata-rata durasi lagu tersebut.
+
+    4. **ORDER BY milliseconds DESC**: Bagian ini mengurutkan hasil berdasarkan durasi lagu (**milliseconds**) dari yang terlama ke terpendek (descending).
+
+    Jadi, secara keseluruhan, query ini akan mengambil data nama dan durasi lagu dari tabel **track** yang memiliki durasi lebih lama dari rata-rata durasi lagu di tabel       tersebut, dan hasilnya akan diurutkan berdasarkan durasi lagu dari yang terlama ke terpendek.
+
+  - **Hasil**
+    <div align="center">
+    <img src="https://github.com/Royjihan21/Data_Gambar_SQL/blob/main/Picture_Porto_1_SQL_Music/Bagian_2_Q3.png">
+    </div
 
 ## Kontribusi
 
