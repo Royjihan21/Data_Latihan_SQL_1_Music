@@ -19,7 +19,7 @@ Selamat datang di Proyek SQL Menarik! Proyek ini dirancang untuk memberikan peng
 
 <!-- Project Header -->
 <div align="center">
-  <img src="https://github.com/Royjihan21/Data_Gambar_SQL/blob/main/picture/Bagian_1_Q1.png">
+  <img src="https://github.com/Royjihan21/Data_Latihan_SQL_1_Music/blob/main/schema_diagram.png">
 </div>
 
 ## Pertanyaan Bagian 1
