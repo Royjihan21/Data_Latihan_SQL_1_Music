@@ -302,4 +302,5 @@ Kami akan melihat kontribusi Anda dengan senang hati dan merespons secepat mungk
 - SQL Client yang di pakai DBeaver untuk berinteraksi dengan database.
 
 Terima kasih telah mengeksplorasi Proyek SQL Menarik ini! Semoga proyek ini membantu Anda meningkatkan pemahaman tentang SQL
+***
 © 2023 - Royjihan Maulana
