@@ -20,10 +20,7 @@ Selamat datang di Proyek SQL Menarik! Proyek ini dirancang untuk memberikan peng
 ### 1. Siapa karyawan paling senior berdasarkan jabatan.
   - **Query**
     ***
-      select title,last_name,levels 
-      from sql_port_1_music.employee 
-      order by levels desc 
-      limit 1;
+      select title,last_name,levels from sql_port_1_music.employee order by levels desc limit 1;
 
   - **Penjelasan Query**
     ***
