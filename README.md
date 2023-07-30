@@ -19,8 +19,27 @@ Selamat datang di Proyek SQL Menarik! Proyek ini dirancang untuk memberikan peng
 ## Pertanyaan Bagian 1
 
 1. Siapa karyawan paling senior berdasarkan jabatan.
-  - Query
-  - Penjelasan Query
+  - **Query**
+    ***
+      select title,last_name,levels 
+      from sql_port_1_music.employee 
+      order by levels desc 
+      limit 1;
+
+  - **Penjelasan Query**
+    ***
+    Query di atas adalah sebuah perintah SQL untuk mengambil data dari tabel **employee** pada basis data **sql_port_1_music**. Mari kita bahas masing-masing bagian dari        query tersebut:
+
+    1. **SELECT title, last_name, levels**: Ini adalah bagian SELECT dari query. Di sini, kita memilih tiga kolom dari tabel **employee**, yaitu **title**, **last_name**,          dan **levels**. Query ini akan mengambil data dari kolom-kolom ini untuk setiap baris yang memenuhi kondisi dari bagian berikutnya.
+
+    2. **FROM sql_port_1_music.employee**: Ini adalah bagian FROM dari query. Di sini, kita menentukan dari tabel mana kita akan mengambil data, yaitu dari tabel                   **employee** yang berada dalam basis data **sql_port_1_music**.
+
+    3. **ORDER BY levels DESC**: Ini adalah bagian ORDER BY dari query. Dengan menggunakan **ORDER BY**, kita dapat mengurutkan hasil berdasarkan kolom tertentu. Pada query        ini, kita mengurutkan data berdasarkan kolom **levels** secara menurun (descending), artinya nilai tertinggi akan berada di atas.
+
+    4. **LIMIT 1**: Ini adalah bagian LIMIT dari query. Dengan menggunakan **LIMIT**, kita bisa membatasi jumlah baris yang akan ditampilkan. Pada query ini, kita hanya            ingin mengambil satu baris data, yaitu baris dengan nilai tertinggi dari kolom **levels** setelah diurutkan.
+
+    Jadi, keseluruhan query ini akan mengambil data dari kolom **title**, **last_name**, dan **levels** dari tabel **employee** dalam basis data **sql_port_1_music**.           Kemudian, data akan diurutkan berdasarkan kolom **levels** dari nilai tertinggi ke nilai terendah (descending), dan hanya satu baris data dengan nilai tertinggi             tersebut yang akan ditampilkan sebagai hasil.
+
   - Hasil
 
 2. Negara mana yang memiliki Faktur terbanyak?.
@@ -60,13 +79,6 @@ Selamat datang di Proyek SQL Menarik! Proyek ini dirancang untuk memberikan peng
   - Penjelasan Query
   - Hasil
 
-## Cara Menjalankan
-
-Jelaskan langkah-langkah sederhana untuk menjalankan proyek Anda. Misalnya:
-
-1. Clone repositori ini ke mesin lokal Anda: `git clone https://github.com/username/proyek-sql-menarik.git`
-2. Buka SQL Client Anda dan impor skema database dari file `database.sql`.
-3. Jalankan query SQL yang ada di file `query.sql` untuk melihat contoh-contoh query menarik.
 
 ## Kontribusi
 
