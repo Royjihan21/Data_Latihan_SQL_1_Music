@@ -300,6 +300,7 @@ Kontribusi selalu sangat dihargai! Jika Anda ingin menambahkan contoh atau latih
 
 Kami akan melihat kontribusi Anda dengan senang hati dan merespons secepat mungkin!
 - SQL Client yang di pakai DBeaver untuk berinteraksi dengan database.
+- Pembelajaran dari Youtube [Rishabh Mishra] - https://www.youtube.com/@RishabhMishraOfficial
 
 Terima kasih telah mengeksplorasi Proyek SQL Menarik ini! Semoga proyek ini membantu Anda meningkatkan pemahaman tentang SQL
 ***
