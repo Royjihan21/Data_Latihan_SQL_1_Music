@@ -7,13 +7,7 @@ Selamat datang di Proyek SQL Menarik! Proyek ini dirancang untuk memberikan peng
 - [Schema Diagram](#schema-diagram)
 - [Pertanyaan Bagian 1](#pertanyaan-bagian-1)
 - [Pertanyaan Bagian 2](#pertanyaan-bagian-2)
-- [Struktur Direktori](#struktur-direktori)
-- [Cara Menjalankan](#cara-menjalankan)
-- [Contoh Query SQL](#contoh-query-sql)
-- [Sumber Belajar](#sumber-belajar)
-- [Kontribusi](#kontribusi)
-- [Pertanyaan dan Bantuan](#pertanyaan-dan-bantuan)
-- [Lisensi](#lisensi)
+
 
 ## Schema Diagram
 
@@ -65,13 +59,6 @@ Selamat datang di Proyek SQL Menarik! Proyek ini dirancang untuk memberikan peng
   - Query
   - Penjelasan Query
   - Hasil
-  
-- MySQL, PostgreSQL, atau SQLite (pilih satu sesuai preferensi Anda).
-- SQL Client (seperti MySQL Workbench, pgAdmin, atau DBeaver) untuk berinteraksi dengan database.
-
-## Struktur Direktori
-
-Deskripsikan struktur direktori proyek Anda di sini, jika ada.
 
 ## Cara Menjalankan
 
@@ -80,19 +67,6 @@ Jelaskan langkah-langkah sederhana untuk menjalankan proyek Anda. Misalnya:
 1. Clone repositori ini ke mesin lokal Anda: `git clone https://github.com/username/proyek-sql-menarik.git`
 2. Buka SQL Client Anda dan impor skema database dari file `database.sql`.
 3. Jalankan query SQL yang ada di file `query.sql` untuk melihat contoh-contoh query menarik.
-
-## Contoh Query SQL
-
-Berikan beberapa contoh query SQL menarik yang terdapat dalam proyek ini. Contoh:
-
-1. Query untuk mencari total penjualan berdasarkan produk.
-2. Query untuk menemukan pelanggan terbaik berdasarkan jumlah pembelian.
-3. Query untuk menghitung rata-rata, maksimum, dan minimum dari suatu data.
-
-## Sumber Belajar
-
-- [Tutorial SQL W3Schools](https://www.w3schools.com/sql/): Panduan SQL yang kaya dengan contoh-contoh dan latihan-latihan.
-- [SQLZoo](https://sqlzoo.net/): Situs web dengan latihan-latihan SQL interaktif dan tantangan.
 
 ## Kontribusi
 
@@ -105,16 +79,7 @@ Kontribusi selalu sangat dihargai! Jika Anda ingin menambahkan contoh atau latih
 6. Buat pull request ke branch `main` repositori ini.
 
 Kami akan melihat kontribusi Anda dengan senang hati dan merespons secepat mungkin!
+- SQL Client yang di pakai DBeaver untuk berinteraksi dengan database.
 
-## Pertanyaan dan Bantuan
-
-Jika Anda memiliki pertanyaan atau butuh bantuan dengan proyek ini, jangan ragu untuk membuat *issue* atau menghubungi saya langsung melalui email atau LinkedIn.
-
-## Lisensi
-
-Tentukan lisensi yang Anda gunakan untuk proyek Anda, misalnya MIT, Apache, dsb.
-
----
-Terima kasih telah mengeksplorasi Proyek SQL Menarik ini! Semoga proyek ini membantu Anda meningkatkan pemahaman tentang SQL dan manajemen database. Selamat belajar!
-
-© Tahun Nama Anda. Dilarang menggunakan ulang, mereproduksi, atau mendistribusikan tanpa izin.
+Terima kasih telah mengeksplorasi Proyek SQL Menarik ini! Semoga proyek ini membantu Anda meningkatkan pemahaman tentang SQL
+© 2023 - Royjihan Maulana
